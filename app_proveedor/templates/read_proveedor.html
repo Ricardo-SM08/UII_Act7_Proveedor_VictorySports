@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Proveedores | VictorySports</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { margin: 5px; padding: 5px 10px; text-decoration: none; color: white; border-radius: 4px; }
+        .editar { background-color: #007BFF; }
+        .borrar { background-color: #DC3545; }
+        .agregar { background-color: #28A745; display: inline-block; margin: 10px 0; padding: 10px 15px; color: white; text-decoration: none; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Listado de Proveedores 📦</h1>
+    <a href="{% url 'create_proveedor' %}" class="btn agregar">Agregar Proveedor</a>
+    <a href="{% url 'index' %}" class="btn editar" style="background-color: #6c757d;">Volver al Menú</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre Completo</th>
+                <th>Categoría</th>
+                <th>Contacto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proveedor in proveedores %}
+            <tr>
+                <td>{{ proveedor.id }}</td>
+                <td>{{ proveedor.nombre }} {{ proveedor.ap_paterno }} {{ proveedor.ap_materno }}</td>
+                <td>{{ proveedor.categoria }}</td>
+                <td>{{ proveedor.contacto }}</td>
+                <td>
+                    <a href="{% url 'update_proveedor' proveedor.id %}" class="btn editar">Editar</a>
+                    <a href="{% url 'delete_proveedor' proveedor.id %}" class="btn borrar">Borrar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay proveedores registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

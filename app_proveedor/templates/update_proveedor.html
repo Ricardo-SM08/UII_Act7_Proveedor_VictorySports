@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Proveedor | VictorySports</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { max-width: 500px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        label { display: block; margin: 10px 0 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #007BFF; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 4px; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Editar Proveedor: {{ proveedor.nombre }} {{ proveedor.ap_paterno }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <label>Nombre:</label>
+        <input type="text" name="nombre" value="{{ proveedor.nombre }}" required>
+
+        <label>Apellido Paterno:</label>
+        <input type="text" name="ap_paterno" value="{{ proveedor.ap_paterno }}" required>
+
+        <label>Apellido Materno:</label>
+        <input type="text" name="ap_materno" value="{{ proveedor.ap_materno }}" required>
+
+        <label>Categoría:</label>
+        <input type="text" name="categoria" value="{{ proveedor.categoria }}" required>
+
+        <label>Contacto:</label>
+        <input type="text" name="contacto" value="{{ proveedor.contacto }}" maxlength="15" required>
+
+        <button type="submit">Actualizar Proveedor</button>
+    </form>
+    <p><a href="{% url 'read_proveedor' %}">Volver al listado</a></p>
+</body>
+</html>

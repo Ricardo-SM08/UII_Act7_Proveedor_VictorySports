@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Borrado | VictorySports</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .card { max-width: 400px; padding: 20px; border: 1px solid #DC3545; border-radius: 5px; background-color: #f8d7da; color: #721c24; }
+        .btn { padding: 10px 15px; text-decoration: none; color: white; margin: 5px; border: none; cursor: pointer; border-radius: 4px; display: inline-block;}
+        .confirmar { background-color: #DC3545; }
+        .cancelar { background-color: #6c757d; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1> Confirmar Eliminación</h1>
+        <p>¿Estás seguro de **borrar permanentemente** al proveedor:</p>
+        <p><strong>{{ proveedor.nombre }} {{ proveedor.ap_paterno }}</strong></p>
+        <p>Categoría: {{ proveedor.categoria }}</p>
+        <hr>
+        
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn confirmar">Sí, Borrar Definitivamente</button>
+            <a href="{% url 'read_proveedor' %}" class="btn cancelar">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
